@@ -1,4 +1,3 @@
 # Web-OS-docker
 
-TODO: Enter the cookbook description here.
-
+A stash a chef cookbooks for installing software for docker. It is full of cookies.

@@ -12,5 +12,5 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[Web-OS-docker::default]
+      - recipe[nodejs::default]
     attributes:
