@@ -14,23 +14,17 @@ Vagrant.configure(2) do |config|
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "hashicorp/precise32"
 
+  # Install software
+  config.vm.provision "shell", inline: <<-SHELL
+     chmod 700 /vagrant/bootstrap.sh
+     chmod 777 /vagrant/bootstrap.sh
+     cd /vagrant
+     ./bootstrap.sh
+   SHELL
+
   config.vm.provision "chef_solo" do |chef|
     chef.add_recipe "vagrant"
   end
-
-  # Install software
-  config.vm.provision "shell", inline: <<-SHELL
-     sudo apt-get update
-     sudo apt-get install -y wget
-     # Instal git
-     sudo apt-get install -y git-core
-     # Install curl
-     sudo apt-get install -y curl
-     # Install Node.js and npm
-
-     # Install ruby for gemfile
-     sudo apt-get install -y ruby-full
-   SHELL
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs

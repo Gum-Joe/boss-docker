@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: nodejs
-# Recipe:: default
+# Recipe:: nvm
 #
 # Copyright (c) 2015 Gum-Joe, All Rights Reserved.
 # The MIT License (MIT)
@@ -27,11 +27,13 @@
 
 #include_recipe 'apt::curl'
 #include_recipe 'apt::git'
+nvmd = "/software/.nvm"
+nvms = "/software/.nvm/nvm.sh"
 
 bash 'download_nvm' do
   cwd ::File.dirname('./')
   code <<-EOH
-    curl --silent --location https://deb.nodesource.com/setup_0.12 | sudo bash -
+    curl --silent --location https://deb.nodesource.com/setup_0.12 | NVM_DIR=#{nvmd} sudo bash -
 
     EOH
 end
