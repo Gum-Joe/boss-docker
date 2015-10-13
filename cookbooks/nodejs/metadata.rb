@@ -1,6 +1,6 @@
 name 'nodejs'
-maintainer 'The Authors'
-maintainer_email 'you@example.com'
+maintainer 'Gum-Joe'
+maintainer_email 'kishansambhi@hotmail.co.uk'
 license 'all_rights'
 description 'Installs/Configures nodejs'
 long_description 'Installs/Configures nodejs'
