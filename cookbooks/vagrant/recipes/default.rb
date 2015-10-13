@@ -3,8 +3,17 @@
 # Recipe:: default
 #
 # Copyright (c) 2015 Gum-Joe, All Rights Reserved.
-nvmd = "/software/.nvm"
-nvms = "/software/.nvm/nvm.sh"
+nvmd = "~/.nvm"
+nvms = "~/.nvm/nvm.sh"
+
+user 'container' do
+  comment 'User for the container'
+  uid '2546'
+  gid '2546'
+  home '/home/container'
+  shell '/bin/bash'
+  password 'container5136'
+end
 
 bash 'install apts' do
   cwd ::File.dirname('./')

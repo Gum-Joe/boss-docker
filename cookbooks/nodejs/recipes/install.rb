@@ -27,11 +27,22 @@
 
 #include_recipe 'apt::curl'
 #include_recipe 'apt::git'
-nvmd = "/software/.nvm"
-nvms = "/software/.nvm/nvm.sh"
+nvmd = "~/.nvm"
+nvms = "~/.nvm/nvm.sh"
 modules = "bower mocha grunt-cli istanbul coffee-script nyc gulp"
+us = 'container'
+
+user 'container' do
+  comment 'User for the container'
+  uid '2546'
+  gid '2546'
+  home '/home/container'
+  shell '/bin/bash'
+  password 'container5136'
+end
 
 bash 'install_nvm' do
+  user us
   cwd ::File.dirname('./')
   code <<-EOH
     curl --silent --location https://deb.nodesource.com/setup_0.12 | NVM_DIR=#{nvmd} sudo bash -
