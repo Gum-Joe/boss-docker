@@ -25,12 +25,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-include_recipe 'apt::curl'
-include_recipe 'apt::git'
+#include_recipe 'apt::curl'
+#include_recipe 'apt::git'
 
-bash 'nvm' do
+bash 'download_nvm' do
   cwd ::File.dirname('./')
   code <<-EOH
-    echo t >> t.txt
+    curl --silent --location https://deb.nodesource.com/setup_0.12 | sudo bash -
+
     EOH
 end

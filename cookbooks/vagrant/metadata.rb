@@ -1,0 +1,7 @@
+name 'vagrant'
+maintainer 'The Authors'
+maintainer_email 'you@example.com'
+license 'all_rights'
+description 'Installs/Configures vagrant'
+long_description 'Installs/Configures vagrant'
+version '0.1.0'
