@@ -1,5 +1,5 @@
 cookbook_path [
-               './cookbooks',
+               '/vagrant/cookbooks',
               ]
 
-Chef::Config['./cookbooks']
+Chef::Config['/vagrant/cookbooks']

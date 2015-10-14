@@ -19,7 +19,12 @@ Vagrant.configure(2) do |config|
      chmod 700 /vagrant/bootstrap.sh
      chmod 777 /vagrant/bootstrap.sh
      cd /vagrant
-     ./bootstrap.sh
+     sudo apt-get update
+     #sudo apt-get install -y wget
+     ## Instal git
+     #sudo apt-get install -y git-core
+     ## Install curl
+     #sudo apt-get install -y curl
    SHELL
 
   config.vm.provision "chef_solo" do |chef|

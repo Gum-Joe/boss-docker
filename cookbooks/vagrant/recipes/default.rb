@@ -5,30 +5,22 @@
 # Copyright (c) 2015 Gum-Joe, All Rights Reserved.
 nvmd = "~/.nvm"
 nvms = "~/.nvm/nvm.sh"
+gems = 'bundle rvm'
 
-user 'container' do
-  comment 'User for the container'
-  uid '2546'
-  gid '2546'
-  home '/home/container'
-  shell '/bin/bash'
-  password 'container5136'
-end
-
-bash 'install apts' do
-  cwd ::File.dirname('./')
-  code <<-EOH
-    sudo apt-get install -y git-core
-    sudo apt-get install -y curl
-    sudo apt-get install -y wget
-    EOH
-end
+#user 'container' do
+#  #comment 'User for the container'
+#  home '/home/container'
+#  shell '/bin/bash'
+#  password 'container5136'
+#end
+package 'git-core'
+package 'curl'
+package 'wget'
 
 bash 'nvm' do
   cwd ::File.dirname('./')
   code <<-EOH
-    curl --silent --location https://deb.nodesource.com/setup_0.12 | NVM_DIR=#{nvmd} sudo bash -
-    export NVM_DIR=#{nvmd}
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
     EOH
 end
 
@@ -44,7 +36,7 @@ bash 'npm packages' do
   cwd ::File.dirname('./')
   code <<-EOH
     . #{nvms}
-    npm install -g bower grunt-cli mocha istanbul coffeepscript nyc
+    npm install -g bower grunt-cli mocha istanbul coffee-script nyc
     EOH
 end
 
@@ -53,6 +45,7 @@ bash 'setup_ruby' do
   code <<-EOH
     sudo apt-get install -y ruby
     export ruby_alias=`rvm alias show ruby-head 2>/dev/null`
+    sudo gem install #{gems}
     rvm alias delete ruby-head
     rvm remove ruby-head --gems --fuzzy
     rvm install ruby-head --binary
